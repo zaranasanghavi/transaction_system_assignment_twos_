@@ -224,6 +224,203 @@ This serves as a permanent audit log.
 
 <br/>
 
+<h2><b>API Documentation</b></h2>
+
+<p>
+This section documents the two core backend APIs used in the system:
+<b>/api/transfer/</b> and <b>/api/history/</b>.
+These APIs handle fund transfers and transaction history retrieval.
+</p>
+
+<br/>
+
+<h2><b>POST /api/transfer/ — Transfer Funds</b></h2>
+
+<p>
+This API transfers a specified amount from the authenticated user (sender)
+to another user (receiver).
+</p>
+
+<p>
+The operation is executed inside a <b>database transaction</b> to ensure
+<b>atomicity</b>. Either both wallet updates succeed or both fail.
+</p>
+
+<br/>
+
+<h3><b>Authentication</b></h3>
+
+<p>
+JWT authentication is required.
+</p>
+
+<pre>
+Authorization: Bearer &lt;access_token&gt;
+</pre>
+
+<br/>
+
+<h3><b>Request Body</b></h3>
+
+<table border="1">
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+  <th>Example</th>
+</tr>
+<tr>
+  <td>receiver_id</td>
+  <td>Integer</td>
+  <td>ID of the user receiving funds</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td>amount</td>
+  <td>Decimal</td>
+  <td>Amount to transfer (12 digits, 2 decimals)</td>
+  <td>500.00</td>
+</tr>
+</table>
+
+<br/>
+
+<h3><b>Example Request</b></h3>
+
+<pre>
+{
+  "receiver_id": 2,
+  "amount": 500.00
+}
+</pre>
+
+<br/>
+
+<h3><b>Success Response (200 OK)</b></h3>
+
+<pre>
+{
+  "id": 1,
+  "sender": 1,
+  "receiver": 2,
+  "amount": "500.00",
+  "success": true,
+  "created_at": "2025-12-22T10:30:00Z"
+}
+</pre>
+
+<br/>
+
+<h3><b>Error Response (400 Bad Request)</b></h3>
+
+<p>
+Occurs when the sender does not have sufficient balance.
+</p>
+
+<pre>
+{
+  "error": "Insufficient balance"
+}
+</pre>
+
+<br/>
+
+<h3><b>Internal Behavior</b></h3>
+
+<ul>
+  <li>Locks sender and receiver wallet rows using <b>select_for_update()</b></li>
+  <li>Deducts amount from sender wallet</li>
+  <li>Credits amount to receiver wallet</li>
+  <li>Creates a record in the Transaction (audit log) table</li>
+  <li>Rolls back the entire operation if any step fails</li>
+</ul>
+
+<br/>
+
+<h2><b>GET /api/history/ — Transaction History</b></h2>
+
+<p>
+This API retrieves the authenticated user’s transaction history.
+It acts as a permanent <b>audit log</b>.
+</p>
+
+<br/>
+
+<h3><b>Authentication</b></h3>
+
+<p>
+JWT authentication is required.
+</p>
+
+<pre>
+Authorization: Bearer &lt;access_token&gt;
+</pre>
+
+<br/>
+
+<h3><b>Request Parameters</b></h3>
+
+<p>
+No request parameters are required.
+All transactions belonging to the authenticated user are returned.
+</p>
+
+<br/>
+
+<h3><b>Example Request</b></h3>
+
+<pre>
+GET /api/history/
+Authorization: Bearer &lt;access_token&gt;
+</pre>
+
+<br/>
+
+<h3><b>Success Response (200 OK)</b></h3>
+
+<pre>
+[
+  {
+    "id": 1,
+    "sender": 1,
+    "receiver": 2,
+    "amount": "500.00",
+    "success": true,
+    "created_at": "2025-12-22T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "sender": 1,
+    "receiver": 3,
+    "amount": "200.00",
+    "success": true,
+    "created_at": "2025-12-22T11:00:00Z"
+  }
+]
+</pre>
+
+<br/>
+
+<h3><b>Internal Behavior</b></h3>
+
+<ul>
+  <li>Queries the Transaction table using <b>sender = request.user</b></li>
+  <li>Returns a JSON array of transaction records</li>
+  <li>Each record includes sender, receiver, amount, status, and timestamp</li>
+</ul>
+
+<br/>
+
+<h2><b>Frontend Integration Notes</b></h2>
+
+<ul>
+  <li>The transfer form sends POST requests to <b>/api/transfer/</b></li>
+  <li>On success, the frontend refreshes balance and history</li>
+  <li>The history table fetches data from <b>/api/history/</b></li>
+  <li>UI updates immediately after successful transactions</li>
+</ul>
+
+
 <h2><b>Database Schema</b></h2>
 
 <h3><b>Wallet Table</b></h3>
