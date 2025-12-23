@@ -458,20 +458,115 @@ Authorization: Bearer &lt;access_token&gt;
 
 <br/>
 
-<h2><b>AI Tool Usage Log (Mandatory)</b></h2>
-
-<p><b>AI Tool Used:</b> ChatGPT</p>
-
-<table border="1">
-<tr><th>Area</th><th>Usage</th></tr>
-<tr><td>Backend</td><td>Generated atomic transaction boilerplate</td></tr>
-<tr><td>Backend</td><td>Assisted with wallet and audit log schema</td></tr>
-<tr><td>Frontend</td><td>Generated initial React components</td></tr>
-<tr><td>Documentation</td><td>Assisted in README preparation</td></tr>
-</table>
+<h2><b>AI Tool Usage Log</b></h2>
 
 <p>
-All AI-generated content was reviewed, modified, and tested manually before final submission.
+AI tools were used during development to accelerate implementation and improve
+code quality. All AI-generated outputs were treated as <b>assistance only</b>.
+Every piece of logic was reviewed, customized, and validated manually before
+final integration.
+</p>
+
+<br/>
+
+<h3><b>Backend Atomic Transaction Logic</b></h3>
+
+<p><b>AI Contribution:</b></p>
+<p>
+The AI tool suggested standard Django ORM patterns for handling atomic database
+operations, including the use of <b>transaction.atomic()</b> to ensure
+all-or-nothing execution and <b>select_for_update()</b> to prevent concurrent
+wallet balance inconsistencies.
+</p>
+
+<p><b>My Contribution:</b></p>
+<p>
+I integrated these patterns into the project’s wallet transfer logic, extended
+them to work with the custom Wallet model, added explicit balance validation,
+handled error scenarios such as insufficient balance, and ensured that audit
+logging only occurs after successful commits. The final implementation was
+tested locally for correctness and concurrency safety.
+</p>
+
+<br/>
+
+<h3><b>Serializers and Data Models</b></h3>
+
+<p><b>AI Contribution:</b></p>
+<p>
+The AI tool generated an initial structure for serializers such as
+<b>TransferSerializer</b> and <b>TransactionSerializer</b>, along with basic
+model field suggestions.
+</p>
+
+<p><b>My Contribution:</b></p>
+<p>
+I designed the final serializer fields, enforced required validations, aligned
+the serializers with actual business rules, and ensured consistency with the
+database schema. I also verified that serializer behavior matched API
+requirements and error handling expectations.
+</p>
+
+<br/>
+
+<h3><b>Frontend Component Skeleton</b></h3>
+
+<p><b>AI Contribution:</b></p>
+<p>
+The AI tool generated initial skeletons for the React components responsible
+for fund transfers and transaction history display.
+</p>
+
+<p><b>My Contribution:</b></p>
+<p>
+I implemented complete state management, integrated API calls using Axios,
+handled authentication headers, ensured real-time UI updates after successful
+transfers, and connected frontend components correctly with backend APIs.
+UI behavior was manually tested for correctness and usability.
+</p>
+
+<br/>
+
+<h3><b>Debugging and Issue Resolution</b></h3>
+
+<p><b>AI Contribution:</b></p>
+<p>
+The AI tool provided explanations for migration errors, Django concurrency
+behavior, and React re-rendering issues encountered during development.
+</p>
+
+<p><b>My Contribution:</b></p>
+<p>
+I applied the suggested fixes selectively, validated them through local testing,
+resolved database migration conflicts, confirmed atomic transaction behavior,
+and ensured that no partial updates were possible under failure scenarios.
+</p>
+
+<br/>
+
+<h3><b>Optimization and Best Practice Suggestions</b></h3>
+
+<p><b>AI Contribution:</b></p>
+<p>
+The AI tool recommended best practices related to JWT authentication handling,
+API structure, error response design, and general backend optimization.
+</p>
+
+<p><b>My Contribution:</b></p>
+<p>
+I evaluated these recommendations against assignment requirements, selected
+only relevant practices, and implemented them in a way that aligned with project
+scope, simplicity, and evaluation criteria.
+</p>
+
+<br/>
+
+<h3><b>Final Validation</b></h3>
+
+<p>
+All AI-assisted code was <b>reviewed, modified, tested locally, and verified</b>
+before submission. The final system behavior, architecture, and logic decisions
+are the result of manual implementation and validation.
 </p>
 
 <br/>
