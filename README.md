@@ -472,104 +472,148 @@ final integration.
 <h3><b>Backend Atomic Transaction Logic</b></h3>
 
 <p><b>AI Contribution:</b></p>
+<h2><b>AI Tool Usage Log with Efficiency Analysis</b></h2>
+
 <p>
-The AI tool suggested standard Django ORM patterns for handling atomic database
-operations, including the use of <b>transaction.atomic()</b> to ensure
-all-or-nothing execution and <b>select_for_update()</b> to prevent concurrent
-wallet balance inconsistencies.
+AI tools were used selectively during development to improve productivity and
+reduce unnecessary trial-and-error. The AI acted strictly as a <b>supporting
+assistant</b>. All architectural decisions, integrations, validations, and
+testing were performed manually.
+</p>
+
+<br/>
+
+<h3><b>Backend Atomic Transaction Boilerplate</b></h3>
+
+<p><b>AI Role:</b></p>
+<p>
+The AI suggested standard Django ORM transaction-handling patterns, including
+the use of <b>transaction.atomic()</b> for atomic execution and
+<b>select_for_update()</b> for row-level locking to prevent concurrency issues
+during wallet balance updates.
 </p>
 
 <p><b>My Contribution:</b></p>
 <p>
-I integrated these patterns into the project’s wallet transfer logic, extended
-them to work with the custom Wallet model, added explicit balance validation,
-handled error scenarios such as insufficient balance, and ensured that audit
-logging only occurs after successful commits. The final implementation was
-tested locally for correctness and concurrency safety.
+I integrated these patterns into the existing Wallet system, implemented balance
+validation logic, ensured rollback safety for failure scenarios, and connected
+the transfer logic with the Transaction audit logging mechanism. I also verified
+that audit records are created only after successful database commits.
+</p>
+
+<p><b>Efficiency Gain:</b></p>
+<p>
+<b>Score 4</b> – The AI guidance saved approximately <b>1.5 hours</b> by avoiding
+trial-and-error experimentation with concurrent wallet updates. However, the
+logic still required thorough manual testing and validation to ensure correctness.
 </p>
 
 <br/>
 
 <h3><b>Serializers and Data Models</b></h3>
 
-<p><b>AI Contribution:</b></p>
+<p><b>AI Role:</b></p>
 <p>
-The AI tool generated an initial structure for serializers such as
-<b>TransferSerializer</b> and <b>TransactionSerializer</b>, along with basic
-model field suggestions.
+The AI generated an initial structural outline for
+<b>TransferSerializer</b> and <b>TransactionSerializer</b>, including basic
+field suggestions and serializer layout.
 </p>
 
 <p><b>My Contribution:</b></p>
 <p>
-I designed the final serializer fields, enforced required validations, aligned
-the serializers with actual business rules, and ensured consistency with the
-database schema. I also verified that serializer behavior matched API
-requirements and error handling expectations.
+I finalized all serializer fields, added appropriate validations, aligned the
+serializers with the actual database schema, and enforced business rules based
+on assignment requirements. Relationships between users, wallets, and
+transactions were designed and verified manually.
+</p>
+
+<p><b>Efficiency Gain:</b></p>
+<p>
+<b>Score 3.5</b> – Initial scaffolding time was reduced, but significant manual
+refinement was required to ensure accurate data flow and correct validation
+behavior.
 </p>
 
 <br/>
 
 <h3><b>Frontend Component Skeleton</b></h3>
 
-<p><b>AI Contribution:</b></p>
+<p><b>AI Role:</b></p>
 <p>
-The AI tool generated initial skeletons for the React components responsible
-for fund transfers and transaction history display.
+The AI generated a basic React component skeleton for the transfer form and
+transaction history view, providing a starting point for UI structure.
 </p>
 
 <p><b>My Contribution:</b></p>
 <p>
-I implemented complete state management, integrated API calls using Axios,
-handled authentication headers, ensured real-time UI updates after successful
-transfers, and connected frontend components correctly with backend APIs.
-UI behavior was manually tested for correctness and usability.
+I implemented API integration using Axios, handled JWT token attachment,
+managed component state, enabled real-time UI updates after successful
+transactions, and ensured seamless interaction between frontend and backend.
+</p>
+
+<p><b>Efficiency Gain:</b></p>
+<p>
+<b>Score 4</b> – Saved approximately <b>1 hour</b> on component scaffolding.
+All core logic, state handling, and UI behavior were implemented manually.
 </p>
 
 <br/>
 
-<h3><b>Debugging and Issue Resolution</b></h3>
+<h3><b>Debugging Assistance</b></h3>
 
-<p><b>AI Contribution:</b></p>
+<p><b>AI Role:</b></p>
 <p>
-The AI tool provided explanations for migration errors, Django concurrency
+The AI provided explanations for Django migration errors, transaction locking
 behavior, and React re-rendering issues encountered during development.
 </p>
 
 <p><b>My Contribution:</b></p>
 <p>
-I applied the suggested fixes selectively, validated them through local testing,
-resolved database migration conflicts, confirmed atomic transaction behavior,
-and ensured that no partial updates were possible under failure scenarios.
+I identified root causes, applied fixes locally, resolved migration conflicts,
+tested edge cases, and verified that atomic transactions behave correctly under
+both success and failure scenarios.
+</p>
+
+<p><b>Efficiency Gain:</b></p>
+<p>
+<b>Score 4.5</b> – Significantly reduced debugging time by approximately
+<b>2 hours</b>, allowing faster issue isolation without random experimentation.
 </p>
 
 <br/>
 
 <h3><b>Optimization and Best Practice Suggestions</b></h3>
 
-<p><b>AI Contribution:</b></p>
+<p><b>AI Role:</b></p>
 <p>
-The AI tool recommended best practices related to JWT authentication handling,
-API structure, error response design, and general backend optimization.
+The AI suggested best practices related to JWT authentication handling,
+RESTful API structuring, and Axios interceptor usage for cleaner frontend
+integration.
 </p>
 
 <p><b>My Contribution:</b></p>
 <p>
-I evaluated these recommendations against assignment requirements, selected
-only relevant practices, and implemented them in a way that aligned with project
-scope, simplicity, and evaluation criteria.
+I evaluated each suggestion against project scope and assignment constraints,
+selected only relevant practices, and implemented them in a controlled manner
+without over-engineering the solution.
+</p>
+
+<p><b>Efficiency Gain:</b></p>
+<p>
+<b>Score 3.5</b> – Helpful for validation and confidence, but still required
+manual judgment and implementation.
 </p>
 
 <br/>
 
-<h3><b>Final Validation</b></h3>
+<h3><b>Overall Assessment</b></h3>
 
 <p>
-All AI-assisted code was <b>reviewed, modified, tested locally, and verified</b>
-before submission. The final system behavior, architecture, and logic decisions
-are the result of manual implementation and validation.
+AI assistance primarily improved development speed and clarity, while all
+final logic, integrations, validations, and testing decisions were carried out
+manually. The completed system reflects deliberate engineering choices rather
+than automated code generation.
 </p>
-
-<br/>
 
 <h2><b>Demo Video</b></h2>
 
