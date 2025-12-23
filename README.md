@@ -1,4 +1,9 @@
 <h1><b>Backend Transaction & Audit Service</b></h1>
+<h2> Video <h2>
+
+
+https://github.com/user-attachments/assets/9281d45c-aeca-4eb5-846e-19e207c15896
+
 
 <p>
 This project implements a <b>Backend Transaction & Audit Service</b> along with a minimal
@@ -606,20 +611,6 @@ manual judgment and implementation.
 
 <br/>
 
-<h3><b>Overall Assessment</b></h3>
-
-<p>
-AI assistance primarily improved development speed and clarity, while all
-final logic, integrations, validations, and testing decisions were carried out
-manually. The completed system reflects deliberate engineering choices rather
-than automated code generation.
-</p>
-
-<h2><b>Demo Video</b></h2>
-
-<p>
-Add your demo video link here.
-</p>
 
 <br/>
 
