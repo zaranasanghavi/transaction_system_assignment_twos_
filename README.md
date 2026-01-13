@@ -463,157 +463,6 @@ Authorization: Bearer &lt;access_token&gt;
 
 <br/>
 
-<h2><b>AI Tool Usage Log</b></h2>
-
-<p>
-AI tools were used during development to accelerate implementation and improve
-code quality. All AI-generated outputs were treated as <b>assistance only</b>.
-Every piece of logic was reviewed, customized, and validated manually before
-final integration.
-</p>
-
-<br/>
-
-<h3><b>Backend Atomic Transaction Logic</b></h3>
-
-<p><b>AI Contribution:</b></p>
-<h2><b>AI Tool Usage Log with Efficiency Analysis</b></h2>
-
-<p>
-AI tools were used selectively during development to improve productivity and
-reduce unnecessary trial-and-error. The AI acted strictly as a <b>supporting
-assistant</b>. All architectural decisions, integrations, validations, and
-testing were performed manually.
-</p>
-
-<br/>
-
-<h3><b>Backend Atomic Transaction Boilerplate</b></h3>
-
-<p><b>AI Role:</b></p>
-<p>
-The AI suggested standard Django ORM transaction-handling patterns, including
-the use of <b>transaction.atomic()</b> for atomic execution and
-<b>select_for_update()</b> for row-level locking to prevent concurrency issues
-during wallet balance updates.
-</p>
-
-<p><b>My Contribution:</b></p>
-<p>
-I integrated these patterns into the existing Wallet system, implemented balance
-validation logic, ensured rollback safety for failure scenarios, and connected
-the transfer logic with the Transaction audit logging mechanism. I also verified
-that audit records are created only after successful database commits.
-</p>
-
-<p><b>Efficiency Gain:</b></p>
-<p>
-<b>Score 4</b> – The AI guidance saved approximately <b>1.5 hours</b> by avoiding
-trial-and-error experimentation with concurrent wallet updates. However, the
-logic still required thorough manual testing and validation to ensure correctness.
-</p>
-
-<br/>
-
-<h3><b>Serializers and Data Models</b></h3>
-
-<p><b>AI Role:</b></p>
-<p>
-The AI generated an initial structural outline for
-<b>TransferSerializer</b> and <b>TransactionSerializer</b>, including basic
-field suggestions and serializer layout.
-</p>
-
-<p><b>My Contribution:</b></p>
-<p>
-I finalized all serializer fields, added appropriate validations, aligned the
-serializers with the actual database schema, and enforced business rules based
-on assignment requirements. Relationships between users, wallets, and
-transactions were designed and verified manually.
-</p>
-
-<p><b>Efficiency Gain:</b></p>
-<p>
-<b>Score 3.5</b> – Initial scaffolding time was reduced, but significant manual
-refinement was required to ensure accurate data flow and correct validation
-behavior.
-</p>
-
-<br/>
-
-<h3><b>Frontend Component Skeleton</b></h3>
-
-<p><b>AI Role:</b></p>
-<p>
-The AI generated a basic React component skeleton for the transfer form and
-transaction history view, providing a starting point for UI structure.
-</p>
-
-<p><b>My Contribution:</b></p>
-<p>
-I implemented API integration using Axios, handled JWT token attachment,
-managed component state, enabled real-time UI updates after successful
-transactions, and ensured seamless interaction between frontend and backend.
-</p>
-
-<p><b>Efficiency Gain:</b></p>
-<p>
-<b>Score 4</b> – Saved approximately <b>1 hour</b> on component scaffolding.
-All core logic, state handling, and UI behavior were implemented manually.
-</p>
-
-<br/>
-
-<h3><b>Debugging Assistance</b></h3>
-
-<p><b>AI Role:</b></p>
-<p>
-The AI provided explanations for Django migration errors, transaction locking
-behavior, and React re-rendering issues encountered during development.
-</p>
-
-<p><b>My Contribution:</b></p>
-<p>
-I identified root causes, applied fixes locally, resolved migration conflicts,
-tested edge cases, and verified that atomic transactions behave correctly under
-both success and failure scenarios.
-</p>
-
-<p><b>Efficiency Gain:</b></p>
-<p>
-<b>Score 4.5</b> – Significantly reduced debugging time by approximately
-<b>2 hours</b>, allowing faster issue isolation without random experimentation.
-</p>
-
-<br/>
-
-<h3><b>Optimization and Best Practice Suggestions</b></h3>
-
-<p><b>AI Role:</b></p>
-<p>
-The AI suggested best practices related to JWT authentication handling,
-RESTful API structuring, and Axios interceptor usage for cleaner frontend
-integration.
-</p>
-
-<p><b>My Contribution:</b></p>
-<p>
-I evaluated each suggestion against project scope and assignment constraints,
-selected only relevant practices, and implemented them in a controlled manner
-without over-engineering the solution.
-</p>
-
-<p><b>Efficiency Gain:</b></p>
-<p>
-<b>Score 3.5</b> – Helpful for validation and confidence, but still required
-manual judgment and implementation.
-</p>
-
-<br/>
-
-
-<br/>
-
 <h2><b>GitHub Repository</b></h2>
 
 <p>
@@ -622,7 +471,7 @@ https://github.com/zaranasanghavi/transaction_system_assignment_twos_
 
 <br/>
 
-<h2><b>Assignment Completion Checklist</b></h2>
+<h2><b>Project Completion Checklist</b></h2>
 
 <ul>
   <li>Atomic fund transfer implemented</li>
@@ -630,6 +479,5 @@ https://github.com/zaranasanghavi/transaction_system_assignment_twos_
   <li>JWT authentication enabled</li>
   <li>Transaction history API available</li>
   <li>Frontend updates in real time</li>
-  <li>AI usage documented</li>
   <li>PostgreSQL integration completed</li>
 </ul>
